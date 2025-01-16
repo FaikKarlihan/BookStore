@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using AutoMapper;
 using WebApi.Common;
 using WebApi.DBOperations;
 
@@ -8,10 +9,16 @@ namespace WebApi.BookOperations.GetBookDetail
     public class GetBookDetailQuery
     {
         private readonly BookStoreDbContext _DbContex;
+        private readonly IMapper _mapper;
         public int BookId {get;set;}
-        public GetBookDetailQuery(BookStoreDbContext context)
+        public int maxId {get;set;}
+        public GetBookDetailQuery(BookStoreDbContext context, IMapper mapper)
         {
             _DbContex = context;
+            _mapper = mapper;
+            maxId = _DbContex.Books.Any()
+                ? _DbContex.Books.Max(book => book.Id)
+                : 0;
         }
 
         public BookDetailViewModel Handle()
@@ -20,11 +27,7 @@ namespace WebApi.BookOperations.GetBookDetail
             if (book is null)
                 throw new InvalidOperationException("Book is not found");
             
-            BookDetailViewModel vm = new BookDetailViewModel();
-            vm.title = book.Title;
-            vm.pageCount = book.PageCount;
-            vm.genre = ((GenreEnum)book.GenreId).ToString();
-            vm.publishDate = book.PublishDate.Date.ToString("dd/MM/yyyy");
+            BookDetailViewModel vm = _mapper.Map<BookDetailViewModel>(book);
 
             return vm;
         }
@@ -38,3 +41,4 @@ namespace WebApi.BookOperations.GetBookDetail
         }
     
 }
+
