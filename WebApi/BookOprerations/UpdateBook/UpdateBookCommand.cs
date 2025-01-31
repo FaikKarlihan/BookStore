@@ -18,7 +18,7 @@ namespace WebApi.BookOperations.UpdateBook
         {
             var book = _DbContext.Books.SingleOrDefault(x=>x.Id == BookId);
             if(book is null)
-                throw new InvalidOperationException("Book is not found");
+                throw new InvalidOperationException("Book not found");
 
             book.GenreId = Model.GenreId != default ? Model.GenreId : book.Id;
             book.Title = Model.Title != default ? Model.Title : book.Title; 
