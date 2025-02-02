@@ -2,10 +2,9 @@ using System;
 using System.Linq;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using WebApi.Common;
 using WebApi.DBOperations;
 
-namespace WebApi.BookOperations.GetBookDetail
+namespace WebApi.Application.BookOperations.Queries.GetBookDetail
 {
     public class GetBookDetailQuery
     {
@@ -24,7 +23,7 @@ namespace WebApi.BookOperations.GetBookDetail
 
         public BookDetailViewModel Handle()
         {
-            var book = _DbContex.Books.Include(x=> x.Genre).Where(book=> book.Id == BookId).SingleOrDefault();
+            var book = _DbContex.Books.Include(x=> x.Author).Include(x=> x.Genre).Where(book=> book.Id == BookId).SingleOrDefault();
             if (book is null)
                 throw new InvalidOperationException("Book is not found");
             
@@ -39,6 +38,7 @@ namespace WebApi.BookOperations.GetBookDetail
             public string genre { get; set; }
             public int pageCount { get; set; }
             public string publishDate { get; set; }
+            public string AuthorName { get; set; }
         }
     
 }

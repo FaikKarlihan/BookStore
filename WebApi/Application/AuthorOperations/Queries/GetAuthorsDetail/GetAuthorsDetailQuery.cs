@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using WebApi.DBOperations;
 
 namespace WebApi.Application.AuthorOperations.Queries.GetAuthorsDetail
@@ -18,7 +19,7 @@ namespace WebApi.Application.AuthorOperations.Queries.GetAuthorsDetail
         }
         public GetAuthorsDetailQueryViewModel  Handle()
         {
-            var authors = _DbContext.Authors.Where(x=> x.Id == AuthorId).SingleOrDefault();
+            var authors = _DbContext.Authors.Include(x=> x.Books).Where(x=> x.Id == AuthorId).SingleOrDefault();
             if (authors is null)
                 throw new InvalidOperationException("Author not found");
             
@@ -31,5 +32,6 @@ namespace WebApi.Application.AuthorOperations.Queries.GetAuthorsDetail
         public string Name { get; set; }
         public string Surname { get; set; }
         public string BirthDate { get; set; }
+        public List<string> Books { get; set; }
     }    
 }

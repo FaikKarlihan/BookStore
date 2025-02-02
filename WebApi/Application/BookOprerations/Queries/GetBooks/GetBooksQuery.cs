@@ -7,7 +7,7 @@ using WebApi.Common;
 using WebApi.DBOperations;
 using WebApi.Entities;
 
-namespace WebApi.BookOperations.GetBooks
+namespace WebApi.Application.BookOperations.Queries.GetBooks
 {
     public class GetBookQuery
     {
@@ -20,17 +20,9 @@ namespace WebApi.BookOperations.GetBooks
         }
         public List<BookViewModel >Handler()
         {
-            var bookList = _dbContext.Books.Include(x=> x.Genre).OrderBy(x=> x.Id).ToList<Book>();
-            List<BookViewModel> vm = _mapper.Map<List<BookViewModel>>(bookList);//new List<BookViewModel>();
-            // foreach (var book in bookList)
-            // {
-            //     vm.Add(new BookViewModel(){
-            //         Title = book.Title,
-            //         Genre = ((GenreEnum)book.GenreId).ToString(),
-            //         PublishDate = book.PublishDate.Date.ToString("dd/MM/yyyy"),
-            //         PageCount = book.PageCount 
-            //     });
-            // }
+            var bookList = _dbContext.Books.Include(x=> x.Author).Include(x=> x.Genre).OrderBy(x=> x.Id).ToList<Book>();
+            List<BookViewModel> vm = _mapper.Map<List<BookViewModel>>(bookList);
+
             return vm;
         }
 
@@ -40,6 +32,7 @@ namespace WebApi.BookOperations.GetBooks
             public int PageCount { get; set; }
             public string  PublishDate { get; set; }
             public string Genre { get; set; }
+            public string AuthorName { get; set; }
         }
     }
 }
