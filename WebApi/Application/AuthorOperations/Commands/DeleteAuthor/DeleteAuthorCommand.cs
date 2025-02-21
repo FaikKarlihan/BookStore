@@ -7,9 +7,9 @@ namespace WebApi.Application.AuthorOperations.Commands.DeleteAuthorCommand
 {
     public class DeleteAuthorCommand
     {
-        private readonly BookStoreDbContext _DbContext;
+        private readonly IBookStoreDbContext _DbContext;
         public int AuthorId { get; set; }
-        public DeleteAuthorCommand(BookStoreDbContext contex)
+        public DeleteAuthorCommand(IBookStoreDbContext contex)
         {
             _DbContext = contex;
         }

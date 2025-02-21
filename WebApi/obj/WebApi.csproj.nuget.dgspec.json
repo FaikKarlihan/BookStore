@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Faik\\Documents\\Sites\\BookStore\\webapi\\WebApi.csproj": {}
+    "c:\\Users\\Faik\\Documents\\Sites\\BookStore\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Faik\\Documents\\Sites\\BookStore\\webapi\\WebApi.csproj": {
+    "c:\\Users\\Faik\\Documents\\Sites\\BookStore\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Faik\\Documents\\Sites\\BookStore\\webapi\\WebApi.csproj",
+        "projectUniqueName": "c:\\Users\\Faik\\Documents\\Sites\\BookStore\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "C:\\Users\\Faik\\Documents\\Sites\\BookStore\\webapi\\WebApi.csproj",
+        "projectPath": "c:\\Users\\Faik\\Documents\\Sites\\BookStore\\WebApi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\Faik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Faik\\Documents\\Sites\\BookStore\\webapi\\obj\\",
+        "outputPath": "c:\\Users\\Faik\\Documents\\Sites\\BookStore\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Faik\\AppData\\Roaming\\NuGet\\NuGet.Config"

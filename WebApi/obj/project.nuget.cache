@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+mOE7X7LbCw=",
+  "dgSpecHash": "WjPQJPa/DLI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Faik\\Documents\\Sites\\BookStore\\webapi\\WebApi.csproj",
+  "projectFilePath": "c:\\Users\\Faik\\Documents\\Sites\\BookStore\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Faik\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Faik\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
@@ -37,7 +37,7 @@
       "code": "NU1902",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "'Swashbuckle.AspNetCore.SwaggerUI' 5.6.3 paketinde önem derecesi orta olan bilinen bir https://github.com/advisories/GHSA-qrmm-w75w-3wpx güvenlik açığı var",
+      "message": "Package 'Swashbuckle.AspNetCore.SwaggerUI' 5.6.3 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-qrmm-w75w-3wpx",
       "libraryId": "Swashbuckle.AspNetCore.SwaggerUI",
       "targetGraphs": [
         "net5.0"

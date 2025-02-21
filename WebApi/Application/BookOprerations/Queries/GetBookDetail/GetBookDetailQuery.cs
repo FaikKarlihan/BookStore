@@ -8,15 +8,19 @@ namespace WebApi.Application.BookOperations.Queries.GetBookDetail
 {
     public class GetBookDetailQuery
     {
-        private readonly BookStoreDbContext _DbContex;
+        private readonly IBookStoreDbContext _DbContex;
         private readonly IMapper _mapper;
         public int BookId {get;set;}
         public int maxId {get;set;}
-        public GetBookDetailQuery(BookStoreDbContext context, IMapper mapper)
+        public GetBookDetailQuery(IBookStoreDbContext context, IMapper mapper)
         {
             _DbContex = context;
             _mapper = mapper;
-            maxId = _DbContex.Books.Any()
+            maxId = _DbContex != null ? GetMaxId() : 0;
+        }
+        public int GetMaxId()
+        {
+            return _DbContex != null && _DbContex.Books.Any()
                 ? _DbContex.Books.Max(book => book.Id)
                 : 0;
         }
