@@ -9,6 +9,10 @@ using WebApi.Application.BookOperations.Queries.GetBookDetail;
 using WebApi.Entities;
 using static WebApi.Application.BookOperations.Commands.CreateBook.CreateBookCommand;
 using static WebApi.Application.BookOperations.Queries.GetBooks.GetBookQuery;
+using static WebApi.Application.UserOperations.Commands.CreateUser.CreateUserCommand;
+using WebApi.Application.UserOperations.Commands.UpdateUser;
+using WebApi.Application.UserOperations.Queries.GetUsers;
+using WebApi.Application.UserOperations.Queries.GetUserDetail;
 
 namespace WebApi.Common
 {
@@ -17,8 +21,8 @@ namespace WebApi.Common
         public MappingProfile()
         {
             CreateMap<CreateBookModel, Book>()
-            .ForMember(dest => dest.Author, opt => opt.Ignore()) // Author nesnesini AutoMapper'e bırakmıyoruz
-            .ForMember(dest => dest.AuthorId, opt => opt.Ignore()); // AuthorId'yi biz manuel set ediyoruz
+            .ForMember(dest => dest.Author, opt => opt.Ignore())
+            .ForMember(dest => dest.AuthorId, opt => opt.Ignore());
     
             CreateMap<Book, CreateBookModel>()
             .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.Name))
@@ -46,6 +50,11 @@ namespace WebApi.Common
             .ForMember(dest => dest.Books, opt => opt.MapFrom(src => src.Books.Select(b => b.Title).ToList()));
 
             CreateMap<CreateAuthorModel, Author>();
+
+            CreateMap<CreateUserModel, User>();
+            CreateMap<UpdateUserModel, User>();
+            CreateMap<User, GetUsersViewModel>();
+            CreateMap<User, GetUserDetailQueryViewModel>();
         }
     }
 }

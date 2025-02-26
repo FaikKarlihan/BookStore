@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using WebApi.Common;
 using WebApi.DBOperations;
 
@@ -10,6 +12,7 @@ namespace TestSetup
     {
         public BookStoreDbContext Context { get; private set; }
         public IMapper Mapper { get; private set; }
+        public IConfiguration Configuration {get; private set;}
 
         public CommonTestFixture()
         {
@@ -18,6 +21,18 @@ namespace TestSetup
             {
                 cfg.AddProfile<MappingProfile>();
             }).CreateMapper();
+
+            // In-memory Configuration ekleniyor
+            var configData = new Dictionary<string, string>
+            {
+                { "Token:SecurityKey", "TestSuperSecretKey123!" },
+                { "Token:Issuer", "TestIssuer" },
+                { "Token:Audience", "TestAudience" }
+            };
+
+            Configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection(configData) // In-memory ayarları ekle
+                .Build();
         }
 
         private void ResetDatabase()
@@ -32,6 +47,7 @@ namespace TestSetup
             Context.AddAuthors();
             Context.AddGenres();
             Context.AddBooks();
+            Context.AddUsers();
             Context.SaveChanges();
         }
 

@@ -37,7 +37,10 @@ namespace WebApi.DBOperations
                     new Book{ Title = "Crime and Punishment", GenreId = 3, PageCount = 540, PublishDate = new DateTime(1866,12,21), AuthorId = 1},
                     new Book{ Title = "The Gambler", GenreId = 3, PageCount = 150, PublishDate = new DateTime(1866,03,15), AuthorId = 1}
                 );
-                
+                context.Users.AddRange
+                (
+                    new User {Name = "Faik", Surname = "Karlıhan", Email = "faik_han@outlook.com", Password = "123456"}
+                );
                 context.SaveChanges();
             }
         }
